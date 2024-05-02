@@ -1,3 +1,3 @@
-echo "클라이언트 채팅 프로그램 시작!!!!!!"
+echo "ClientChatProgram Start!!!!!!"
 javac -encoding UTF-8 ClientEx.java
 java ClientEx
