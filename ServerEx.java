@@ -13,8 +13,10 @@ public class ServerEx {
         Socket listen = serverSocket.accept();
         // 접속완료
         System.out.println("접속완료! 채팅프로그램 실행");
-        BufferedReader in = new BufferedReader(new InputStreamReader(listen.getInputStream()));
-        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(listen.getOutputStream()));
+        // InputStreamReader의 기본 디코딩 형식은 UTF-16이므로 실제 콘솔에서 실행하기 때문에 UTF-8로 맞춰준다.
+        BufferedReader in = new BufferedReader(new InputStreamReader(listen.getInputStream(),"UTF-8"));
+        // 마찬가지로 Writer도 UTF-8로 맞춘다.
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(listen.getOutputStream(),"UTF-8"));
         Scanner scanner = new Scanner(System.in);
         while(true){
             String inputMsg = in.readLine();
