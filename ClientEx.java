@@ -1,3 +1,4 @@
+import Test.EmojiTest;
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
@@ -5,6 +6,7 @@ import java.util.Scanner;
 public class ClientEx {
 
     public static void main(String[] args) throws IOException {
+        System.out.println(EmojiTest.getEmoji());
         // 서버와의 통신접속을 위한 준비
         Socket clientSocket = new Socket("192.168.0.106",9999); // 서버 실행시 접속할 서버 인자를 받는다.
         // 클라이언트의 로컬호스트의 주소를 출력한다.
@@ -16,7 +18,7 @@ public class ClientEx {
         // 키보드로부터 입력을 받을 Scanner 객체를 생성한다
         Scanner scanner = new Scanner(System.in);
         while(true){
-            System.out.println("입력 >>>");
+            System.out.println("입력 >>>" + EmojiEx.getEmoji1());
             String outputMsg = scanner.nextLine();
             out.write(outputMsg + "\n");
             out.flush();
