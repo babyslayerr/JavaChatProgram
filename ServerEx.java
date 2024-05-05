@@ -1,3 +1,5 @@
+import customthread.ReceiveThread;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -15,22 +17,18 @@ public class ServerEx {
         System.out.println("접속완료! 채팅프로그램 실행");
         // InputStreamReader의 기본 디코딩 형식은 UTF-16이므로 실제 콘솔에서 실행하기 때문에 UTF-8로 맞춰준다.
         BufferedReader in = new BufferedReader(new InputStreamReader(listen.getInputStream(),"UTF-8"));
+        // 입력받는 스레드를 별도로 구분한다.
+        ReceiveThread receiveThread = new ReceiveThread(serverSocket, listen, in);
+        // 입력받는 스레드 시작
+        receiveThread.start();
         // 마찬가지로 Writer도 UTF-8로 맞춘다.
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(listen.getOutputStream(),"UTF-8"));
         Scanner scanner = new Scanner(System.in);
         while(true){
-            String inputMsg = in.readLine();
-            if(inputMsg.equals("q!")){
-                break;
-            }
-            System.out.println(inputMsg);
+            // while 문은 socket이 종료되면 예외가 발생하면서 스레드가 종료된다.
             System.out.println("입력 >>>");
             out.write(scanner.nextLine() + "\n");
             out.flush();
         }
-
-        listen.close();
-        serverSocket.close();
-
     }
 }
