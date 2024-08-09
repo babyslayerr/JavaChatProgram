@@ -11,6 +11,10 @@
 - Java Development Kit (JDK) 17 이상
 - windows 운영체제
 
+### 실행화면
+
+![chatAnimation](https://github.com/user-attachments/assets/17be3a88-1bd4-4a54-a257-87ece3f0edef)
+
 ### 실행하기 
 1. **서버 실행** :
 ``` bash
